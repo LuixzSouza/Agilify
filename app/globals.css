@@ -1,26 +1,94 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Cores da AGILIFY */
+  --color-brand-blue: #1976d2;
+  --color-brand-blue-dark: #155fa8;
+  --color-brand-blue-soft: #e3f2fd;
+  --color-brand-blue-line: #bbdefb;
+  
+  --color-ink: #1a2330;
+  --color-ink-dim: #5b6776;
+  --color-ink-faint: #8895a4;
+
+  --color-surface: #ffffff;
+  --color-surface-alt: #f6f8fb;
+  --color-surface-soft: #eef2f7;
+  --color-surface-stripe: #fafbfc;
+
+  --color-green: #2e7d32;
+  --color-red: #c62828;
+  --color-orange: #f57c00;
+
+  /* Variáveis do Shadcn mapeadas para as cores da marca */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--brand-blue);
+  --color-primary-foreground: #ffffff;
+  
+  --color-border: #dde3ea;
+  --color-input: #dde3ea;
+  --color-ring: var(--brand-blue);
+
+  /* Fontes */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-mono: var(--font-roboto), ui-monospace, SFMono-Regular;
+
+  /* Animações */
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  --animate-shimmer: shimmer 6s infinite linear;
+}
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a2330;
+  
+  --card: #ffffff;
+  --card-foreground: #1a2330;
+  
+  --popover: #ffffff;
+  --popover-foreground: #1a2330;
+  
+  --primary: #1976d2;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #f6f8fb;
+  --secondary-foreground: #1a2330;
+  
+  --muted: #f6f8fb;
+  --muted-foreground: #5b6776;
+  
+  --accent: #e3f2fd;
+  --accent-foreground: #1976d2;
+  
+  --destructive: #c62828;
+  --destructive-foreground: #ffffff;
+  
+  --border: #dde3ea;
+  --input: #dde3ea;
+  --ring: #1976d2;
+  
+  --radius: 0.625rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utilitários extras para o efeito "Shimmer" do PromoBanner */
+.promo-gradient {
+  background: linear-gradient(90deg, #155fa8 0%, #1976d2 50%, #155fa8 100%);
+  background-size: 200% auto;
 }
